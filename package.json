@@ -3,6 +3,7 @@
 , "author": "Myles Byrne"
 , "version": "0.1.0"
 , "main": "./ms-logger.js"
+, "bin" : { "ms-logger" : "./bin/ms-logger" }
 , "engines":
   { "node": "~0.4"
   }
