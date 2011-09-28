@@ -1,7 +1,7 @@
 { "name": "ms-logger"
 , "description": "A Message Socket based logger"
 , "author": "Myles Byrne"
-, "version": "0.1.0"
+, "version": "0.2.0"
 , "main": "./ms-logger.js"
 , "bin" : { "ms-logger" : "./bin/ms-logger" }
 , "engines":
