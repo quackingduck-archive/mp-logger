@@ -1,0 +1,2 @@
+#!/usr/bin/env node
+require('../cmdline-client').run(process.argv.slice(2,process.argv.length))
