@@ -4,7 +4,7 @@
 # issue (thanks to mslog's buffering) and will see all log messages
 #
 # First, start the client:
-#     ./mslog ipc:///tmp/mslogger/example
+#     ./bin/ms-logger ipc:///tmp/mslogger/example
 #
 # Then run this file
 #     coffee example.coffee
