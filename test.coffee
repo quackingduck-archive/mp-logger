@@ -20,3 +20,9 @@ module.exports = testCase
       req.close()
       logger.close()
       test.done()
+
+  "a null config returns a noop logger": (test) ->
+    logger = msLogger 'test', null
+    test.doesNotThrow ->
+      logger.info "does nothing. goes nowhere."
+    test.done()

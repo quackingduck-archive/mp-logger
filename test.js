@@ -20,6 +20,14 @@
         logger.close();
         return test.done();
       });
+    },
+    "a null config returns a noop logger": function(test) {
+      var logger;
+      logger = msLogger('test', null);
+      test.doesNotThrow(function() {
+        return logger.info("does nothing. goes nowhere.");
+      });
+      return test.done();
     }
   });
 }).call(this);

@@ -15,23 +15,39 @@
     })(MSLogger, args, function() {});
   };
   MSLogger = (function() {
-    function MSLogger(name, url) {
-      var dir;
+    function MSLogger(name, conf) {
       this.name = name;
-      this.url = url;
-      if (!this.url) {
-        dir = "/tmp/mslogger";
-        if (!path.existsSync(dir)) {
-          fs.mkdirSync(dir, 0777);
-        }
-        this.url = "ipc://" + dir + "/" + this.name;
-        this.pubUrl = this.url + '.pub';
-      }
       this.seqId = Math.round(Math.random() * 1000000);
       this.seq = 0;
       this.buffer = [];
       this.maxBufferSize = 20;
-      this.reply = ms.reply(this.url);
+      this.closed = true;
+      if (conf !== null) {
+        if (conf === void 0) {
+          this.openDefaultSockets();
+        } else {
+          this.open(conf);
+        }
+      }
+    }
+    MSLogger.prototype.info = function(msg) {
+      return this.log('info', msg);
+    };
+    MSLogger.prototype.warn = function(msg) {
+      return this.log('warn', msg);
+    };
+    MSLogger.prototype.error = function(msg) {
+      return this.log('error', msg);
+    };
+    MSLogger.prototype.fatal = function(msg) {
+      return this.log('fatal', msg);
+    };
+    MSLogger.prototype.debug = function(msg) {
+      return this.log('debug', msg);
+    };
+    MSLogger.prototype.open = function(conf) {
+      this.replyUrl = conf.rep;
+      this.reply = ms.reply(this.replyUrl);
       this.reply(__bind(function(msg, send) {
         var cmd;
         cmd = msg.msg;
@@ -47,8 +63,42 @@
             });
         }
       }, this));
+      this.pubUrl = conf.pub;
       this.publish = ms.publish(this.pubUrl);
-    }
+      this.closed = false;
+      return this;
+    };
+    MSLogger.prototype.reopen = function(conf) {
+      if (!this.closed) {
+        this.close();
+      }
+      return this.open(conf);
+    };
+    MSLogger.prototype.close = function() {
+      if (this.closed) {
+        return;
+      }
+      this.reply.close();
+      this.reply = null;
+      this.replyUrl = null;
+      this.publish.close();
+      this.publish = null;
+      this.pubUrl = null;
+      return this.closed = true;
+    };
+    MSLogger.prototype.openDefaultSockets = function() {
+      var dir, pub, rep;
+      dir = "/tmp/mslogger";
+      if (!path.existsSync(dir)) {
+        fs.mkdirSync(dir, 0777);
+      }
+      rep = "ipc://" + dir + "/" + this.name;
+      pub = rep + '.pub';
+      return this.open({
+        rep: rep,
+        pub: pub
+      });
+    };
     MSLogger.prototype.connectResponse = function() {
       return {
         messages: this.buffer,
@@ -76,22 +126,10 @@
         seq: this.seq
       };
     };
-    MSLogger.prototype.info = function(msg) {
-      return this.log('info', msg);
-    };
-    MSLogger.prototype.warn = function(msg) {
-      return this.log('warn', msg);
-    };
-    MSLogger.prototype.error = function(msg) {
-      return this.log('error', msg);
-    };
-    MSLogger.prototype.fatal = function(msg) {
-      return this.log('fatal', msg);
-    };
-    MSLogger.prototype.debug = function(msg) {
-      return this.log('debug', msg);
-    };
     MSLogger.prototype.log = function(type, msg) {
+      if (this.closed) {
+        return;
+      }
       msg = {
         name: this.name,
         seq_id: this.seqId,
@@ -105,10 +143,6 @@
       }
       this.buffer.push(msg);
       return this.publish(msg);
-    };
-    MSLogger.prototype.close = function() {
-      this.reply.close();
-      return this.publish.close();
     };
     return MSLogger;
   })();
