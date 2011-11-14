@@ -1,6 +1,6 @@
 # Syncronizing (semi-reliable) log client
 
-msgSocket = require 'message-socket'
+msgSocket = require 'message-ports'
 msgSocket.messageFormat = 'json'
 
 require 'colors'
