@@ -1,25 +1,30 @@
-{ "name": "mp-logger"
-, "description": "A Message Ports based logger"
-, "author": "Myles Byrne"
-, "version": "0.3.0"
-, "main": "./ms-logger.js"
-, "bin" : { "ms-logger" : "./bin/ms-logger" }
-, "engines":
-  { "node": "~0.4"
-  }
-, "dependencies":
-  { "message-socket": ">=0.2.0"
-  }
-, "devDependencies":
-  { "nodeunit": ">=0.5.0"
-  , "coffee-script": ">=1.1.1"
-  }
-, "repository":
-  { "type": "git"
-  , "url": "https://github.com/quackingduck/ms-logger.git"
-  }
-, "licenses": [
-  { "type": "MIT"
-  , "url": "https://github.com/quackingduck/ms-logger/raw/master/LICENSE"
-  }]
+{
+  "name": "mp-logger",
+  "description": "A Message Ports based logger",
+  "author": "Myles Byrne",
+  "version": "0.3.1",
+  "main": "./ms-logger.js",
+  "bin": {
+    "ms-logger": "./bin/ms-logger"
+  },
+  "engines": {
+    "node": "~0.4"
+  },
+  "dependencies": {
+    "message-socket": ">=0.2.0"
+  },
+  "devDependencies": {
+    "nodeunit": ">=0.5.0",
+    "coffee-script": ">=1.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/quackingduck/ms-logger.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/quackingduck/ms-logger/raw/master/LICENSE"
+    }
+  ]
 }
