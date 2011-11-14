@@ -1,5 +1,5 @@
-{ "name": "ms-logger"
-, "description": "A Message Socket based logger"
+{ "name": "mp-logger"
+, "description": "A Message Ports based logger"
 , "author": "Myles Byrne"
 , "version": "0.3.0"
 , "main": "./ms-logger.js"
