@@ -1,7 +1,4 @@
-# Example app that uses mslog.
-#
-# Subscribers that connect first will not exhibit the "slow joiner"
-# issue (thanks to mslog's buffering) and will see all log messages
+# Example usage of mp-logger
 #
 # First, start the client:
 #     ./bin/ms-logger ipc:///tmp/mslogger/example
@@ -9,11 +6,11 @@
 # Then run this file
 #     coffee example.coffee
 
-msLogger = require './ms-logger'
+mpl = require './'
 
 count = 0
 
-logger = msLogger 'example'
+logger = mpl 'example'
 
 setInterval ->
   logger.info "counting: #{count+=1}"

@@ -1,8 +1,8 @@
 (function() {
-  var count, logger, msLogger;
-  msLogger = require('./ms-logger');
+  var count, logger, mpl;
+  mpl = require('./');
   count = 0;
-  logger = msLogger('example');
+  logger = mpl('example');
   setInterval(function() {
     logger.info("counting: " + (count += 1));
     if (count === 100) {
