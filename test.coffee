@@ -1,5 +1,5 @@
 msLogger   = require './'
-ms         = require 'message-socket'
+ms         = require 'message-ports'
 {testCase} = require 'nodeunit'
 
 module.exports = testCase

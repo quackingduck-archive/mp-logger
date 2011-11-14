@@ -1,7 +1,7 @@
 (function() {
   var ms, msLogger, testCase;
   msLogger = require('./');
-  ms = require('message-socket');
+  ms = require('message-ports');
   testCase = require('nodeunit').testCase;
   module.exports = testCase({
     "connect message sends whole buffer": function(test) {
