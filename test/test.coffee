@@ -1,4 +1,4 @@
-msLogger   = require './'
+msLogger   = require '../'
 ms         = require 'message-ports'
 {testCase} = require 'nodeunit'
 
