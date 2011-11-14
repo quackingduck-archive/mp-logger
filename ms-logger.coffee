@@ -7,7 +7,7 @@
 fs = require 'fs'
 path = require 'path'
 
-ms = require 'message-socket'
+ms = require 'message-ports'
 ms.messageFormat = 'json'
 
 module.exports = (args...) -> new MSLogger args...

@@ -3,7 +3,7 @@
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   fs = require('fs');
   path = require('path');
-  ms = require('message-socket');
+  ms = require('message-ports');
   ms.messageFormat = 'json';
   module.exports = function() {
     var args;
