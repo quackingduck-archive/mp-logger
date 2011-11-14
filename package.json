@@ -3,9 +3,9 @@
   "description": "A Message Ports based logger",
   "author": "Myles Byrne",
   "version": "0.3.1",
-  "main": "./lib/ms-logger.js",
+  "main": "./lib/mp-logger.js",
   "bin": {
-    "ms-logger": "./bin/ms-logger"
+    "mp-logger": "./bin/mp-logger"
   },
   "engines": {
     "node": "~0.4"
@@ -19,12 +19,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/quackingduck/ms-logger.git"
+    "url": "git://github.com/quackingduck/mp-logger.git"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/quackingduck/ms-logger/raw/master/LICENSE"
+      "url": "https://github.com/quackingduck/mp-logger/raw/master/LICENSE"
     }
   ]
 }
