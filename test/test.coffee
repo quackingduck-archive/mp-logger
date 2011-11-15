@@ -1,5 +1,5 @@
 mpLogger   = require '../'
-ms         = require 'message-ports'
+mp         = require 'message-ports'
 {testCase} = require 'nodeunit'
 
 module.exports = testCase
@@ -13,7 +13,7 @@ module.exports = testCase
     logger.info "two"
     logger.info "three"
 
-    req = ms.req 'ipc:///tmp/mplogger/test'
+    req = mp.req 'ipc:///tmp/mplogger/test'
     req { msg: 'connect' }, (res) ->
       test.strictEqual res.messages.length, 3
 
