@@ -10,9 +10,9 @@ path = require 'path'
 ms = require 'message-ports'
 ms.messageFormat = 'json'
 
-module.exports = (args...) -> new MSLogger args...
+module.exports = (args...) -> new MPLogger args...
 
-class MSLogger
+class MPLogger
   constructor: (@name, conf) ->
     @seqId = Math.round(Math.random()*1000000)
     @seq = 0
@@ -58,7 +58,7 @@ class MSLogger
     @closed = yes
 
   openDefaultSockets: ->
-    dir = "/tmp/mslogger"
+    dir = "/tmp/mplogger"
     fs.mkdirSync dir, 0777 unless path.existsSync dir
     rep = "ipc://#{dir}/#{@name}"
     pub = rep + '.pub'
