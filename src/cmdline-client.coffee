@@ -1,7 +1,7 @@
 # Syncronizing (semi-reliable) log client
 
-msgSocket = require 'message-ports'
-msgSocket.messageFormat = 'json'
+mp = require 'message-ports'
+mp.messageFormat = 'json'
 
 require 'colors'
 
@@ -11,7 +11,7 @@ require 'colors'
   seqNum = null
   syncronizing = no
 
-  req = msgSocket.req args...
+  req = mp.req args...
   req { msg: 'connect' }, (res) ->
 
     printMessage msg for msg in res.messages
@@ -19,7 +19,7 @@ require 'colors'
     seqId = res.seq_id
     seqNum = res.seq
 
-    sub = msgSocket.sub res.subscribe
+    sub = mp.sub res.subscribe
     # we do this until the process dies
     sub (msg) ->
       unless syncronizing
