@@ -7,8 +7,8 @@
 fs = require 'fs'
 path = require 'path'
 
-ms = require 'message-ports'
-ms.messageFormat = 'json'
+mp = require 'message-ports'
+mp.messageFormat = 'json'
 
 module.exports = (args...) -> new MPLogger args...
 
@@ -33,7 +33,7 @@ class MPLogger
 
   open: (conf) ->
     @replyUrl = conf.rep
-    @reply = ms.reply @replyUrl
+    @reply = mp.reply @replyUrl
     @reply (msg, send) =>
       cmd = msg.msg; delete msg.msg
       switch cmd
@@ -42,7 +42,7 @@ class MPLogger
         else send error: "message not understood"
 
     @pubUrl = conf.pub
-    @publish = ms.publish @pubUrl
+    @publish = mp.publish @pubUrl
 
     @closed = no
     this
